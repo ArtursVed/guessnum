@@ -120,14 +120,22 @@ public class Main {
                 });
     }
 
+//    private static int findMaxNameLen() {
+//        int result = 0;
+//        for (GameResult r : results) {
+//            if (result < r.name.length()) {
+//                result = r.name.length();
+//            }
+//        }
+//        return result;
+//    }
+
     private static int findMaxNameLen() {
-        int result = 0;
-        for (GameResult r : results) {
-            if (result < r.name.length()) {
-                result = r.name.length();
-            }
-        }
-        return result;
+        return results.stream()
+                .map(r -> r.name)
+                .map(n -> n.length())
+                .max(Comparator.naturalOrder())
+                .get();
     }
 
     static String askYN() {
